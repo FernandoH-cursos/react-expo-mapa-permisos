@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect } from "react";
 
-import { usePermissionsStore } from "../store/usePermissions";
+import { usePermissionsStore } from "../store/usePermissionsStore";
 import { PermissionStatus } from "@/infrastructure/interfaces/location";
 import { router } from "expo-router";
 import { AppState } from "react-native";
@@ -16,33 +16,29 @@ import { AppState } from "react-native";
 //* 'suscription.remove()' es un método que permite eliminar un evento de escucha de un evento. En este caso, se elimina el evento
 //* 'change' de 'AppState' para evitar fugas de memoria.
 
-
-
-
 export const PermissionsCheckerProvider = ({ children }: PropsWithChildren) => {
   const { locationStatus, checkLocationPermission } = usePermissionsStore();
 
-  //* Redireccionar a la pantalla correspondiente según el estado de los permisos de ubicación, en este caso, si los permisos están 
+  //* Redireccionar a la pantalla correspondiente según el estado de los permisos de ubicación, en este caso, si los permisos están
   //* otorgados, redireccionar a la pantalla de mapa, de lo contrario, redireccionar a la pantalla de permisos.
   useEffect(() => {
     if (locationStatus === PermissionStatus.GRANTED) {
       router.replace("/map");
-    }else if(locationStatus !== PermissionStatus.CHECKING){
+    } else if (locationStatus !== PermissionStatus.CHECKING) {
       router.replace("/permissions");
     }
   }, [locationStatus]);
-  
-  //* Verificar estado de permisos de ubicación 
+
+  //* Verificar estado de permisos de ubicación
   useEffect(() => {
     checkLocationPermission();
   }, []);
-
 
   //* Escuchar cambios en el estado de la aplicación y verificar los permisos de ubicación cuando la aplicación pasa a primer plano.
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       // console.log({nextAppState});
-      
+
       if (nextAppState === "active") {
         checkLocationPermission();
       }
@@ -54,4 +50,4 @@ export const PermissionsCheckerProvider = ({ children }: PropsWithChildren) => {
   });
 
   return children;
-}
+};

@@ -3,16 +3,17 @@ import * as Location from "expo-location";
 import { PermissionStatus } from "@/infrastructure/interfaces/location";
 import { Alert, Linking } from "react-native";
 
-//* 'Linking' es un módulo que proporciona una forma de interactuar con otras aplicaciones a través de URL. Puede ser útil para abrir
-//* ajustes de la aplicación, abrir enlaces, enviar correos electrónicos, entre otros.
-//* Sus metodos son:
-//* - 'Linking.openSettings()' permite abrir los ajustes de la aplicación.
+/* 
+* - 'Linking' es un módulo que proporciona una forma de interactuar con otras aplicaciones a través de URL. Puede ser útil para abrir
+*    ajustes de la aplicación, abrir enlaces, enviar correos electrónicos, entre otros. Sus metodos son:
+*    - 'Linking.openSettings()' permite abrir los ajustes de la aplicación.
 
-//* requestForegroundPermissionsAsync() permite solicitar permisos de ubicación al usuario para acceder a la ubicación del dispositivo
-//* en primer plano.
+* - requestForegroundPermissionsAsync() permite solicitar permisos de ubicación al usuario para acceder a la ubicación del dispositivo
+*   en primer plano.
 
-//* getForegroundPermissionsAsync() permite obtener el estado de los permisos de ubicación en primer plano, donde se puede saber si
-//* el usuario ha concedido o denegado los permisos.
+* - getForegroundPermissionsAsync() permite obtener el estado de los permisos de ubicación en primer plano, donde se puede saber si
+*   el usuario ha concedido o denegado los permisos.
+*/
 
 //? Permite solicitar permisos de ubicación al usuario para acceder a la ubicación del dispositivo en primer plano.
 //? Retorna el estado de los permisos de ubicación, donde se puede saber si el usuario ha concedido o denegado los permisos.
